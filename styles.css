@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #eae7dc;
+  height: 90vh;
+}
+header {
+  text-align: center;
+  margin-top: 20px;
+  color: #e98074;
+}
+header h1 {
+  font-size: 70px;
+  font-weight: bold;
+}
+header p {
+  margin: 15px;
+  font-size: 25px;
+}
+#game {
+  display: flex;
+  justify-content: center;
+}
+#player,
+#computer {
+  background-color: #8e8d8a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  margin: 10px;
+}
+.logo {
+  color: #eae7dc;
+}
+#score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e85a4f;
+}
+#side,
+#number {
+  margin: 10px;
+}
+#side {
+  font-size: 30px;
+}
+#number {
+  font-size: 45px;
+}
+#results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e98074;
+}
+#choices {
+  display: flex;
+  justify-content: center;
+  margin: 25px auto 0 auto;
+  width: 400px;
+}
+#rock,
+#paper,
+#scissors,
+#playAgain {
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #e85a4f;
+  color: #eae7dc;
+  margin: 0 15px;
+  transition: 0.3s;
+}
+#rock:hover,
+#paper:hover,
+#scissors:hover,
+#playAgain:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+#playAgain {
+  width: 100px !important;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}

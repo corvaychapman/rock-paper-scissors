@@ -4,10 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <title>Rock, Paper, Scissors</title>
   </head>
 
   <body>
+    <header>
+      <h1>Welcome!</h1>
+      <p>Lets play a classic game of rock, papper, or scissors.</p>
+    </header>
+    <div id="game">
+      <div id="player">
+        <i id="player-logo" class="fas fa-question fa-9x logo"></i>
+      </div>
+      <div id="computer">
+        <i id="computer-logo" class="fas fa-question fa-9x logo"></i>
+      </div>
+    </div>
+    <div id="score">
+      <h3 id="side">You</h3>
+      <span id="number" class="playerScore">0</span>
+      <span id="number">-</span>
+      <span id="number" class="cpuScore">0</span>
+      <h3 id="side">CPU</h3>
+    </div>
+    <div id="results">Play 5 Rounds and try to win!</div>
+    <div id="choices">
+      <button id="rock">Rock</button>
+      <button id="paper">Paper</button>
+      <button id="scissors">Scissors</button>
+      <button id="playAgain">Play Again</button>
+    </div>
     <script type="text/javascript" src="main.js"></script>
   </body>
 </html>

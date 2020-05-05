@@ -1,64 +1,108 @@
+const button = document.querySelectorAll("#choices button");
+
+button.forEach(function (buttons) {
+  buttons.addEventListener("click", playerPlay);
+});
+
 let computerPlay = () => {
   let cpuChoices = ["rock", "paper", "scissors"];
   let index = Math.floor(Math.random() * 3);
   return cpuChoices[index];
 };
 
-let cpuScore = 0;
-let myScore = 0;
+function playerPlay(e) {
+  const playerSelection = e.target.innerText;
+  playRound(playerSelection, computerPlay());
+}
 
-function playRound(playerSelection, computerSelection) {
-  //case insensitive
-  playerSelection = playerSelection.toLowerCase();
+function playRound(playerChoice, computerChoice) {
+  let playerScore = document.querySelector(".playerScore");
+  let computerScore = document.querySelector(".cpuScore");
+  let results = document.querySelector("#results");
+  let computerLogo = document.querySelector("#computer-logo");
+  let playerLogo = document.querySelector("#player-logo");
+  let playAgain = document.querySelector("#playAgain");
 
-  //game rules
-  if (playerSelection === "rock") {
-    if (computerSelection === "rock") {
-      return "It's a tie, please play again.";
-    } else if (computerSelection === "scissors") {
-      myScore++;
-      return "You Win!";
+  if (playerChoice === "Rock") {
+    playerLogo.classList.add("fa-hand-rock");
+    if (computerChoice === "rock") {
+      computerLogo.classList.add("fa-hand-rock");
+      results.innerHTML = "Its a tie! Play again.";
+    } else if (computerChoice === "scissors") {
+      computerLogo.classList.add("fa-hand-scissors");
+      playerScore.innerText = parseInt(playerScore.innerText) + 1;
+      results.innerHTML = "You win!";
     } else {
-      cpuScore++;
-      return "You lose!";
+      computerLogo.classList.add("fa-hand-paper");
+      computerScore.innerText = parseInt(computerScore.innerText) + 1;
+      results.innerHTML = "You lost:(";
     }
-  } else if (playerSelection === "scissors") {
-    if (computerSelection === "rock") {
-      cpuScore++;
-      return "You lose!";
-    } else if (computerSelection === "scissors") {
-      return "It's a tie, please play again.";
+  } else if (playerChoice === "Scissors") {
+    playerLogo.classList.add("fa-hand-scissors");
+    if (computerChoice === "rock") {
+      computerLogo.classList.add("fa-hand-rock");
+      computerScore.innerText = parseInt(computerScore.innerText) + 1;
+      results.innerHTML = "You lost:(";
+    } else if (computerChoice === "scissors") {
+      computerLogo.classList.add("fa-hand-scissors");
+      results.innerHTML = "Its a tie! Play again.";
     } else {
-      myScore++;
-      return "You Win!";
+      computerLogo.classList.add("fa-hand-paper");
+      playerScore.innerText = parseInt(playerScore.innerText) + 1;
+      results.innerHTML = "You win!";
     }
   } else {
-    if (computerSelection === "rock") {
-      myScore++;
-      return "You Win!";
-    } else if (computerSelection === "paper") {
-      return "It's a tie, please play again.";
+    playerLogo.classList.add("fa-hand-paper");
+    if (computerChoice === "rock") {
+      computerLogo.classList.add("fa-hand-rock");
+      playerScore.innerText = parseInt(playerScore.innerText) + 1;
+      results.innerHTML = "You win!";
+    } else if (computerChoice === "scissors") {
+      computerLogo.classList.add("fa-hand-scissors");
+      computerScore.innerText = parseInt(computerScore.innerText) + 1;
+      results.innerHTML = "You lost:(";
     } else {
-      cpuScore++;
-      return "You Loose!";
+      computerLogo.classList.add("fa-hand-paper");
+      results.innerHTML = "Its a tie! Play again.";
+    }
+  }
+
+  if (
+    parseInt(playerScore.innerText) + parseInt(computerScore.innerText) ===
+    5
+  ) {
+    button.forEach(function (button) {
+      button.disabled = true;
+      button.classList.add("disabled");
+      gameOver(
+        playerLogo,
+        computerLogo,
+        playerScore,
+        computerScore,
+        results,
+        playAgain
+      );
+    });
+    if (parseInt(playerScore.innerText) > parseInt(computerScore.innerText)) {
+      results.innerHTML = "Game Over: You WON!!!!!!!!!";
+    } else {
+      results.innerHTML = "Game Over: You lost.";
     }
   }
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    let player = prompt("Rock, paper, or scissors?").toLocaleLowerCase();
-    let computer = computerPlay();
-    let result = playRound(player, computer);
-    console.log(result);
-  }
-  if (myScore > cpuScore) {
-    console.log("Congrats! You won the entire game!");
-  } else if (myScore === cpuScore) {
-    console.log("It was a tie! Play again!");
-    game();
-  } else {
-    console.log("You lost to the computer:(");
-  }
+function gameOver(
+  playerLogo,
+  computerLogo,
+  playerScore,
+  computerScore,
+  results,
+  play
+) {
+  play.style.display = "flex";
+  play.addEventListener("click", function () {
+    computerLogo.classList.add = "fa-question";
+  });
 }
-game();
+let computer = document.querySelector("#computer-logo");
+computer.classList.add = "fa-hand-rock";
